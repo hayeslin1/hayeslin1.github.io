@@ -6,19 +6,20 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./lib/style.css"/>
     <script src="./lib/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
-    <h1>{{msg}}</h1>
-    <img :src="img2">
+    <h1><img :src="img2">   {{msg}} </h1>
+    <h1><a href="/blog/2021/01/Home">Home</a></h1>
 </div>
 </body>
 <script>
     new Vue({
         el:"#app",
         data:{
-            msg:"这里将来会记录一些美好的事情.....  即将开始",
+            msg:"这里将来会记录一些美好的事情.....",
             img2:"./img/1.gif",
         }
     })
