@@ -154,6 +154,14 @@
   + -XX:ParallelGCThreads=n:设置并发收集器年轻代收集方式为并行收集时，使用的CPU数。并行收集线程数。
 
 
+## Linux上排查JVM问题
+
+  + top ： cpu，内存，磁盘，负载等
+  + jstat ：gc和类加载情况
+  + jmap ： 查看jvm内存占用
+  + jstack ：对账信息，线程信息
+
+
 
 # 类加载-反射
 
