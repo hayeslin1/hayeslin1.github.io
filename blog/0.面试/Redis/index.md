@@ -1,5 +1,13 @@
 # Redis 
 
+　redis 最基本的一个内部原理和特点，就是 redis 实际上是个单线程工作模型。
+
+## redis和memcached有啥区别？
+
++ Redis有更多的数据结构和并支持更丰富的数据操作
++ 在 redis3.x 版本中，便能支持 cluster 模式，而 memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据。
++ Redis数据可以进行持久化： RDB全量缓存，AOF增量缓存
+
 
 
 
