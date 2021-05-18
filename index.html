@@ -13,10 +13,10 @@
 
 <body>
     <div id="app">
-        <div v-for="blog in list">
+        <div v-for="blog in list" >
             <h3>{{blog.title}}</h3>
             <p v-for="art in  blog.article">
-                <a v-bind:href="['/blog/'+ blog.title + '/' + art ]">{{blog.title}}:{{art}}</a>
+                <a v-bind:href="['/blog/'+ blog.title + '/' + art ]">{{blog.prefix}}{{art}}</a>
             </p>
             <hr>
         </div>
@@ -29,6 +29,7 @@
             list: [
                 {
                     title: "0.面试题集锦",
+                    prefix:"大话面试之：",
                     article: [
                         "JVM",
                         "数据结构",
@@ -37,7 +38,7 @@
                         "锁",
                         "Redis",
                         "Spring",
-                    ]
+                    ],
                 },
                 {
                     title: "1.手机玩机技巧",
