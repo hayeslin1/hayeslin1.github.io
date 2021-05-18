@@ -1,49 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>@Mr.HayesLin@</title>
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./lib/style.css"/>
+    <link rel="stylesheet" href="./lib/style.css" />
     <script src="./lib/vue.min.js"></script>
 </head>
+
 <body>
-<div id="app">
-    <h3>0. 面试题集锦：</h3>
-    <p><a href="/blog/0.面试/JVM">2021面试之：JVM</a></p>
-    <p><a href="/blog/0.面试/数据结构">2021面试之：数据结构</a></p>
-    <p><a href="/blog/0.面试/数据库">2021面试之：数据库</a></p>
-    <p><a href="/blog/0.面试/并发多线程">2021面试之：并发多线程</a></p>
-    <p><a href="/blog/0.面试/锁">2021面试之：锁</a></p>
-    <p><a href="/blog/0.面试/Redis">2021面试之：Redis</a></p>
-    <p><a href="/blog/0.面试/Spring">2021面试之：Spring</a></p>
-    <p><a href="##">2021面试之：后续更新中...</a></p>
-    <hr>
-    <h3>1.手机玩机技巧</h3>
-    <p><a href="/blog/1.手机玩机技巧">1.手机玩机技巧</a></p>
-    <hr>
-    <h3>2.电脑玩机技巧</h3>
-    <p><a href="/blog/2.电脑玩机技巧">2.电脑玩机技巧</a></p> 
-    <hr>
-    <h3>3. 程序员开发</h3>
-    <p><a href="/blog/3. 程序员开发">3. 程序员开发</a></p>
-    <hr>
-    <h3>4.进阶高级玩家</h3>
-    <p><a href="/blog/4.进阶高级玩家/1.申请onedrive5T空间和OfficeA1Plus免费版">1.申请onedrive5T空间和OfficeA1Plus免费版</a></p>
-    <hr>
-    <h3>5.生活随笔</h3>
-    <p><a href="/blog/5.生活随笔">5.生活随笔</a></p>
-</div>
+    <div id="app">
+        <div v-for="blog in list">
+            <h3>{{blog.title}}</h3>
+            <p v-for="art in  blog.article">
+                <a v-bind:href="['/blog/'+ blog.title + '/' + art ]">{{blog.title}}:{{art}}</a>
+            </p>
+            <hr>
+        </div>
+    </div>
 </body>
 <script>
     new Vue({
-        el:"#app",
-        data:{
-            msg:"这里将来会陆续加入一些美好的事情.....",
-            img2:"./img/1.gif",
+        el: "#app",
+        data: {
+            list: [
+                {
+                    title: "0.面试题集锦",
+                    article: [
+                        "JVM",
+                        "数据结构",
+                        "数据库",
+                        "并发多线程",
+                        "锁",
+                        "Redis",
+                        "Spring",
+                    ]
+                },
+                {
+                    title: "1.手机玩机技巧",
+                    article: []
+                },
+                {
+                    title: "2.电脑玩机技巧",
+                    article: []
+                },
+                {
+                    title: "3. 程序员开发",
+                    article: []
+                },
+                {
+                    title: "4.进阶高级玩家",
+                    article: [
+                        "申请onedrive5T空间和OfficeA1Plus免费版",
+                    ]
+                },
+                {
+                    title: "5.生活随笔",
+                    article: []
+                },
+            ]
         }
     })
 </script>
+
 </html>
