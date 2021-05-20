@@ -8,12 +8,13 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./lib/style.css" />
+    <link rel="stylesheet" href="./lib/index.css" />
     <script src="./lib/vue.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <div v-for="blog in list" >
+        <div v-for="blog in list" class="main">
             <h3>{{blog.title}}</h3>
             <p v-for="art in  blog.article">
                 <a v-bind:href="['/blog/'+ blog.title + '/' + art ]">{{blog.prefix}}{{art}}</a>
