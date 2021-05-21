@@ -94,3 +94,37 @@
     `mysql> grant all privileges on *.* to 'root'@'%' identified by 'Aa123@' with grant option;`
 
     `mysql> flush privileges;`
+
+
+
++ 修改配置文件
+
+    `vi /etc/my.cnf`
+
+    <img src='../../../img/my.cnf.png'>
+
+
+    > 改完之后需要重启mysqld `systemctl restart mysqld.service`  
+
+
+## 开放3306接口： 
+
++ 查看已经开放的端口
+
+    `firewall-cmd --list-ports`
+
++ 开启端口
+
+    `firewall-cmd --zone=public --add-port=3306/tcp --permanent`
+
++ 重启firewall  
+
+    `firewall-cmd --reload `
+
++ 停止firewall
+
+    `systemctl stop firewalld.service`
+
++ 禁止firewall开机启动 
+
+    `systemctl disable firewalld.service`        
