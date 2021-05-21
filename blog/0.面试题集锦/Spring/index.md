@@ -23,6 +23,3 @@ IOC 全称为：Inversion of Control。控制反转的基本概念是：不用�
 AOP 全称为：Aspect Oriented Programming。AOP是一种编程思想，其核心构造是方面（切面），即将那些影响多个类的公共行为封装到可重用的模块中，而使原本的模块内只需关注自身的个性化行为。
 
 AOP 编程的常用场景有：Authentication（权限认证）、Auto Caching（自动缓存处理）、Error Handling（统一错误处理）、Debugging（调试信息输出）、Logging（日志记录）、Transactions（事务处理）等。
-
-
-## 
