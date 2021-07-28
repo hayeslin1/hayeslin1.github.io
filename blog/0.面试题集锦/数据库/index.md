@@ -118,12 +118,31 @@ ORACLE（读已提交） MySQL（可重复读）
 
 ## explain 解释sql执行计划
 
++ type=const: 通过索引一次查到
++ type=all： 全表扫描
++ type=eq_ref： 唯一索引 
++ type=ref： 非唯一索引扫描，如联合索引
++ type=range： 检索了范围内的行
+
+
++ key=primary： 使用了主键suoyin 
++ key=null： 没有使用索引
+
+
+### 字段详解
 + id
-> select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序 
-> id相同，表示顺序执行，id值越大优先级越高，越先被执行 
+
+> 一组数字 
+
+> id相同，表示顺序执行，至上而下
+
+> id值越大优先级越高，越先被执行 
+
 + select_type
+
 > 查询的类型，主要是用于区分普通查询、联合查询、子查询等复杂的查询
-``` sql
+
+``` xml 
 1、SIMPLE：简单的select查询，查询中不包含子查询或者union 
 2、PRIMARY：查询中包含任何复杂的子部分，最外层查询则被标记为primary 
 3、SUBQUERY：在select 或 where列表中包含了子查询 
@@ -137,18 +156,23 @@ ORACLE（读已提交） MySQL（可重复读）
 > system > const > eq_ref > ref > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL
 
 + key
+
 > 实际使用的索引，如果为NULL，则没有使用索引。 
 
 + key_len
+
 > 表示索引中使用的字节数，查询中使用的索引的长度（最大可能长度），并非实际使用长度，理论上长度越短越好。
 
 + ref
+
 > 显示索引的那一列被使用了，如果可能，是一个常量const。
 
 + rows
+
 > 根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数
 
 + Extra
+
 > Using index： 表示相应的select操作中使用了覆盖索引（Covering Index）
 > 
 > Using where ： 使用了where过滤
@@ -180,3 +204,5 @@ ORACLE（读已提交） MySQL（可重复读）
 + 二进制日志（binlog）：
 
 > 用于复制，在主从复制中，从库利用主库上的binlog进行重播，实现主从同步。 用于数据库的基于时间点的还原。
+
+
