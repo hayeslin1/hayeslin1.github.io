@@ -262,6 +262,7 @@ slave_sql_running: yes
 
 # 两个都是yes才行
 
+
 ```
 
 
