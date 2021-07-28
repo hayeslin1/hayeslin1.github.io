@@ -180,6 +180,104 @@ ORACLE（读已提交） MySQL（可重复读）
 
 + [参考文档（SQL执行计划详解explain）](https://www.cnblogs.com/yhtboke/p/9467763.html)
 
+
+## 主从复制配置
+
+1. 修改主从库的配置文件my.cnf
+
+vi /etc/my.cnf
+
+主库：
+
+```shell
+
+[mysqld]
+# 表示开启二进制日志
+log-bin=mysql-bin
+# 服务器的唯一id
+server-id=1 
+# 设置需要同步的数据库
+binlog-do-db=user_db
+# 屏蔽系统库同步
+binlog-ignore-db=mysql
+binlog-ignore-db=information_scheme
+binlog-ignore-db=performance_schema
+
+
+```
+
+从库
+
+``` shell
+
+[mysqld]
+# 表示开启二进制日志
+log-bin=mysql-bin
+# 服务器的唯一id
+server-id=2
+
+# 设置需要同步的数据库
+replicate_wild_do_table=user_db.%
+
+# 屏蔽系统库同步
+replicate_wild_ignore_table=mysql.%
+replicate_wild_ignore_table=information_scheme.%
+replicate_wild_ignore_table=performance_schema.%
+
+``` 
+
+2. 创建并授权主从复制的专用账号
+
+```shell
+
+# 主库创建slave/db_sync 账号
+
+# 确认位点，记录文件名和位点
+mysql> show master status ; 
+
+file ： mysql-bin.00002 // 文件名
+position: 154 //位点
+
+
+```
+3. 设置从库同步数据
+
+```shell
+
+mysql> stop slave;
+
+mysql> change master to 
+    master_host = 'localhost'
+    master_user = 'db_sync'
+    master_password = 'db_sync'
+    master_file = 'mysql-bin.00002'
+    master_log_pos = '154'
+
+mysql> start slave;
+
+mysql> show slave status ;
+
+slave_io_running: yes
+slave_sql_running: yes
+
+# 两个都是yes才行
+
+```
+
+
+
+
+
+## 主从复制原理
+
++ 分为同步复制和异步复制，大部分都采用异步复制
++ 主master任何修改操作都会写到二进制日志binlog中
++ 从服务器启动一个io线程，（实际上主服务器的客户端进程）
++ 连接到主服务器请求读取二进制日志，把读取到二进制日志写到本地的realylog里
++ 从服务器上的启动一个sql线程，定时检查realylog，如有更改就在本机执行一边
+
+
+
 ## 分库分表
 
 分库分表分为垂直切分和水平切分。
