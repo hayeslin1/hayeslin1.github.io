@@ -272,10 +272,13 @@ slave_sql_running: yes
 ## 主从复制原理
 
 + 分为同步复制和异步复制，大部分都采用异步复制
-+ 主master任何修改操作都会写到二进制日志binlog中
-+ 从服务器启动一个io thread，（实际上主服务器的客户端进程）
-+ 连接到主服务器请求读取二进制日志，把读取到二进制日志写到本地的realylog里
-+ 从服务器上的启动一个sql thread，定时检查realylog，如有更改就在本机执行一边
+
+
++ 主master修改操作(insert update delete)都会写到二进制日志binlog中
++ 从库与主库建立连接，主库启动一个binlog dump thread 将binlog日志发送给从库
++ 从库启动一个io thread，读取主库传过来的binlog二进制并写到本地的realylog里
++ 从库再启动一个sql thread，读取realylog并执行一遍修改
+
 
 
 
