@@ -33,6 +33,14 @@
   + 包含运行时常量池，用于存放各种字面量和符号引用。
 
 
+# 永久代(PermGen)和元空间(Metaspace)
+
++ 只有 HotSpot 才有 “PermGen space”
++ 移除永久代的工作从JDK1.7就开始了，移动到了java heap
++ 元空间并不在虚拟机中，而是使用本地内存。
++ [参考：永久代(PermGen)和元空间(Metaspace)](https://www.cnblogs.com/paddix/p/5309550.html)
+
+
 # MinorGC的过程（复制-清空-互换）
 
   + MinorGC采用复制算法， 只需少量的复制即可完成
