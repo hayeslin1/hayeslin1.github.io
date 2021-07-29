@@ -75,7 +75,8 @@ ORACLE（读已提交） MySQL（可重复读）
 ## mysql的存储引擎
 
  MyISAM 和InnoDB区别
-|   | MyISAM  | InnoDB  | 
+
+|  存储引擎 | MyISAM  | InnoDB  | 
 |---|---|---|
 |事务|不支持|支持|
 |外建|不支持|支持|
