@@ -182,6 +182,18 @@ ORACLE（读已提交） MySQL（可重复读）
 + [参考文档（SQL执行计划详解explain）](https://www.cnblogs.com/yhtboke/p/9467763.html)
 
 
+## 索引失效情况
+
+1. select * from testTable where a>1 and b=2  # a使用，b不使用
+2. where name like "%a%" # 无法使用
+3. where name like "%a"  # 无法使用
+
+
+
+
+
+
+
 ## 主从复制配置
 
 1. 修改主从库的配置文件my.cnf
