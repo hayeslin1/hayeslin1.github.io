@@ -87,14 +87,18 @@
 
     > mysql8.0版本必须符合长度（默认是8位），且必须含有数字，小写或大写字母，特殊字符。
 
-    `mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'Aa123@';`
+    `mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';`
 
 + 开启远程访问mysql ： 
 
-    `mysql> grant all privileges on *.* to 'root'@'%' identified by 'Aa123@' with grant option;`
+    `mysql> grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;`
 
     `mysql> flush privileges;`
 
++ 设置简单密码： 
+  
+    `mysql> set global validate_password_policy=LOW;`
+    `mysql> set global validate_password_length=6;`
 
 
 + 修改配置文件
